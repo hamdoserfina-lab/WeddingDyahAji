@@ -2,428 +2,1294 @@
    1. RESET & VARIABLES (DARK THEME GLASS)
    ========================================= */
 :root {
-    --gold: #d4af37;        /* Emas Mewah */
-    --gold-light: #f3e5ab;  /* Emas Pucat */
-    --dark-bg: #0a0a0a;     /* Hitam Pekat */
-    --glass-dark: rgba(0, 0, 0, 0.7); /* Kaca Gelap */
-    --glass-border: rgba(255, 255, 255, 0.15); /* Border Tipis */
-    
-    --font-main: 'Cormorant Garamond', serif;
-    --font-script: 'Great Vibes', cursive;
+  --gold: #d4af37;
+  --gold-light: #f3e5ab;
+  --dark-bg: #0a0a0a;
+  --glass-dark: rgba(0, 0, 0, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.15);
+
+  --font-main: "Cormorant Garamond", serif;
+  --font-script: "Great Vibes", cursive;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important; /* Paksa hidden */
+  position: relative; /* Menjaga struktur */
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-    font-family: var(--font-main);
-    background-color: var(--dark-bg);
-    color: #fff;
-    overflow-x: hidden;
+  font-family: var(--font-main);
+  background-color: var(--dark-bg);
+  color: #fff;
+}
+
+/* Performance Enhancements */
+.gs-reveal,
+.gs-title,
+.gs-card-mempelai,
+.gs-atm-card {
+  will-change: transform, opacity;
 }
 
 /* =========================================
    2. BACKGROUND SLIDER
    ========================================= */
 .global-bg {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -5;
 }
+
 .bg-slide {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background-size: cover; background-position: center;
-    opacity: 0; animation: slideShow 12s infinite; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation: slideShow 12s infinite;
 }
-.slide-1 { background-image: url('assets/bg-1.jpg'); animation-delay: 0s; }
-.slide-2 { background-image: url('assets/bg-2.jpg'); animation-delay: 6s; }
+.slide-1 {
+  background-image: url("assets/bg-1.jpg");
+  animation-delay: 0s;
+}
+.slide-2 {
+  background-image: url("assets/bg-2.jpg");
+  animation-delay: 6s;
+}
 
 .bg-dark-overlay {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(0px);
-    z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(0px);
+  z-index: 1;
 }
+
 @keyframes slideShow {
-    0% { opacity: 0; transform: scale(1); }
-    10% { opacity: 1; } 45% { opacity: 1; }
-    55% { opacity: 0; transform: scale(1.05); } 100% { opacity: 0; }
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  10% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* =========================================
    3. UTILS & TYPOGRAPHY
    ========================================= */
-.section-header { margin-bottom: 30px; text-align: center; }
-.section-title-gold { 
-    font-family: var(--font-script); font-size: 3rem; 
-    color: var(--gold); margin-bottom: 10px; 
+.section-header {
+  margin-bottom: 30px;
+  text-align: center;
 }
-.section-subtitle { 
-    font-size: 0.9rem; color: #ccc; 
-    max-width: 600px; margin: 0 auto; line-height: 1.5; 
+.section-title-gold {
+  font-family: var(--font-script);
+  font-size: 3rem;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.section-subtitle {
+  font-size: 0.9rem;
+  color: #ccc;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
 }
 
 /* =========================================
-   4. COVER SECTION (MODIFIED ANIMATION)
+   4. COVER SECTION
    ========================================= */
-/* Keyframes Animasi Masuk */
 @keyframes fadeInUpSlow {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-/* Keyframes Tombol Berdenyut */
 @keyframes pulseBtn {
-    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); transform: scale(1); }
-    70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); transform: scale(1.05); }
-    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); transform: scale(1); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+    transform: scale(1);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+    transform: scale(1);
+  }
 }
 
 #cover {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('assets/cover.jpg');
-    background-size: cover; background-position: center;
-    display: flex; flex-direction: column; justify-content: space-between; align-items: center;
-    padding: 60px 20px 50px; text-align: center;
-    z-index: 9999;
-    
-    /* Transisi Dissolve (Fade Out) */
-    transition: opacity 1.5s ease-in-out, visibility 1.5s;
-    opacity: 1;
-    visibility: visible;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)),
+    url("assets/cover.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 20px 50px;
+  text-align: center;
+  z-index: 9999;
+  transition: opacity 1.5s ease-in-out, visibility 1.5s;
+  opacity: 1;
+  visibility: visible;
+}
+#cover.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0);
+  pointer-events: none;
 }
 
-#cover.hidden { 
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(0); 
-    pointer-events: none;
+.sub-title {
+  letter-spacing: 3px;
+  font-size: 0.8rem;
+  color: #ddd;
+  margin-bottom: 5px;
+}
+.wedding-names {
+  font-family: var(--font-script);
+  font-size: 3.5rem;
+  color: var(--gold);
+  line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+.wedding-date-cover {
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: #ccc;
 }
 
-.sub-title { letter-spacing: 3px; font-size: 0.8rem; color: #ddd; margin-bottom: 5px; }
-.wedding-names { 
-    font-family: var(--font-script); font-size: 3.5rem; color: var(--gold); 
-    line-height: 1.1; text-shadow: 0 2px 10px rgba(0,0,0,0.5); 
+.guest-salutation {
+  margin-bottom: 15px;
+  color: #ddd;
 }
-.wedding-date-cover { font-size: 0.9rem; letter-spacing: 2px; color: #ccc; }
-.guest-salutation { margin-bottom: 15px; color: #ddd; }
-.guest-salutation strong { font-size: 1.2rem; color: #fff; }
-.invitation-text { font-size: 0.8rem; color: #bbb; margin-bottom: 25px; }
+.guest-salutation strong {
+  font-size: 1.2rem;
+  color: #fff;
+}
+.invitation-text {
+  font-size: 0.8rem;
+  color: #bbb;
+  margin-bottom: 25px;
+}
 
 .btn-open {
-    padding: 12px 40px; background: var(--gold); color: #000;
-    border: none; border-radius: 50px; font-weight: 600; letter-spacing: 1px;
-    cursor: pointer; box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); transition: all 0.3s;
-    margin-top: 15px;
-    animation: pulseBtn 2s infinite; 
+  padding: 12px 40px;
+  background: var(--gold);
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+  transition: all 0.3s;
+  margin-top: 15px;
+  animation: pulseBtn 2s infinite;
 }
-.btn-open:hover { background: #fff; }
+.btn-open:hover {
+  background: #fff;
+}
 
-/* Helper Class Animasi */
 .animate-up {
-    opacity: 0; 
-    animation: fadeInUpSlow 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  opacity: 0;
+  animation: fadeInUpSlow 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
-.delay-1 { animation-delay: 0.3s; }
-.delay-2 { animation-delay: 0.8s; }
-.delay-3 { animation-delay: 1.3s; }
-.delay-4 { animation-delay: 1.8s; }
-.delay-5 { animation-delay: 2.3s; }
+.delay-1 {
+  animation-delay: 0.3s;
+}
+.delay-2 {
+  animation-delay: 0.8s;
+}
+.delay-3 {
+  animation-delay: 1.3s;
+}
+.delay-4 {
+  animation-delay: 1.8s;
+}
+.delay-5 {
+  animation-delay: 2.3s;
+}
 
 /* =========================================
-   5. HERO SECTION (3D TILT & PARTICLES)
+   5. HERO SECTION
    ========================================= */
-#main-content { display: none; padding-bottom: 80px; }
-
+#main-content {
+  display: none;
+  padding-bottom: 80px;
+}
 .section-hero {
-    min-height: 100vh; display: flex; flex-direction: column;
-    justify-content: center; align-items: center; text-align: center; padding-bottom: 90px;
-    position: relative; z-index: 2; overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 90px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
 }
 
-/* Background Hero Fixed */
-.hero-bg-fixed {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: url('assets/bg-hero.jpg') no-repeat center center/cover;
-    z-index: -2; filter: brightness(0.4) blur(3px) grayscale(80%);
-    transform: scale(1.1);
-}
-
-/* Canvas Partikel */
 #gold-particles {
-    position: fixed; /* Mengambang Mengikuti Scroll Layar */
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%;
-    z-index: 9998; /* Di atas konten website, tapi di bawah Cover & Navbar */
-    pointer-events: none; /* Agar tetap bisa klik tombol di bawah hujan */
-}
-.section-hero .wedding-title {
-    font-family: var(--font-script); font-size: 2.8rem; color: var(--gold);
-    margin-bottom: 10px; max-width: 90%; 
-    text-shadow: 0 4px 20px rgba(0,0,0,0.9); z-index: 5;
-}
-.section-hero .wedding-date { 
-    font-size: 1rem; color: #eee; margin-bottom: 30px; letter-spacing: 2px;
-    z-index: 5; text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  pointer-events: none;
 }
 
-/* 3D Tilt Box */
+.section-hero .wedding-title {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  color: var(--gold);
+  margin-bottom: 10px;
+  max-width: 90%;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+  z-index: 5;
+}
+.section-hero .wedding-date {
+  font-size: 1rem;
+  color: #eee;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  z-index: 5;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+/* 3D Tilt Elements */
 .tilt-box {
-    position: relative;
-    width: 300px; height: 420px;
-    perspective: 1000px; z-index: 10; margin-bottom: 20px;
+  position: relative;
+  width: 300px;
+  height: 420px;
+  perspective: 1000px;
+  z-index: 10;
+  margin-bottom: 20px;
 }
 .tilt-inner {
-    width: 100%; height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.1s ease-out;
-    border-radius: 180px 180px 0 0;
-    border: 3px solid var(--gold);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0 5px rgba(212, 175, 55, 0.2);
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+  border-radius: 180px 180px 0 0;
+  border: 3px solid var(--gold);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 0 5px rgba(212, 175, 55, 0.2);
 }
 .tilt-img {
-    width: 100%; height: 100%; object-fit: cover;
-    border-radius: 175px 175px 0 0;
-    transform: translateZ(20px);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 175px 175px 0 0;
+  transform: translateZ(20px);
 }
 .tilt-glare {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    border-radius: 180px 180px 0 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
-    opacity: 0; pointer-events: none;
-    mix-blend-mode: overlay;
-    transition: opacity 0.2s;
-    transform: translateZ(50px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 180px 180px 0 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  transition: opacity 0.2s;
+  transform: translateZ(50px);
 }
 
-.countdown-box { 
-    display: flex; gap: 10px; margin-top: 0px; z-index: 20; position: relative;
+/* Countdown */
+.countdown-box {
+  display: flex;
+  gap: 10px;
+  margin-top: 0px;
+  z-index: 20;
+  position: relative;
 }
 .timer-item {
-    background: rgba(0, 0, 0, 0.8); border: 1px solid var(--gold);
-    padding: 8px 5px; min-width: 65px; border-radius: 10px;
-    color: var(--gold); text-align: center;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--gold);
+  padding: 8px 5px;
+  min-width: 65px;
+  border-radius: 10px;
+  color: var(--gold);
+  text-align: center;
 }
-.timer-num { font-size: 1.3rem; font-weight: 600; line-height: 1; }
-.timer-label { font-size: 0.6rem; text-transform: uppercase; color: #fff; margin-top: 3px; }
+.timer-num {
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1;
+}
+.timer-label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  color: #fff;
+  margin-top: 3px;
+}
 
 /* =========================================
    6. VERSE SECTION
    ========================================= */
-.section-verse { padding: 40px 20px; }
-.glass-box-verse {
-    background: var(--glass-dark); backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border); border-radius: 20px;
-    padding: 30px 20px; text-align: center; max-width: 600px;
-    margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+.section-verse {
+  padding: 60px 20px;
+  overflow-x: hidden;
 }
-.verse-decoration { font-size: 1.5rem; color: var(--gold); margin-bottom: 10px; }
-.verse-text { font-style: italic; color: #eee; line-height: 1.6; margin-bottom: 15px; }
-.verse-source { font-weight: 600; color: var(--gold); }
+.glass-box-verse {
+  background: var(--glass-dark);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 30px 20px;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: scale(0.9);
+}
+.verse-decoration {
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.verse-text {
+  font-style: italic;
+  color: #eee;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+.verse-source {
+  font-weight: 600;
+  color: var(--gold);
+  display: inline-block;
+}
 
 /* =========================================
-   7. MEMPELAI SECTION
+   MODIFIKASI: TWIN GLASS CARDS (Opsi 1)
    ========================================= */
-.section-mempelai-tabs { padding: 40px 20px 80px; text-align: center; }
-.tab-navigation {
-    display: flex; justify-content: center; align-items: center;
-    gap: 15px; margin-bottom: 30px;
+.section-mempelai-twin {
+  padding: 60px 20px 100px;
+  overflow-x: hidden; /* Mencegah scroll samping saat animasi masuk */
 }
-.avatar-connector { width: 40px; height: 1px; background: rgba(255, 255, 255, 0.2); }
-.avatar-btn {
-    display: flex; flex-direction: column; align-items: center; cursor: pointer;
-    transition: all 0.4s ease; opacity: 0.6; transform: scale(0.9);
-}
-.avatar-img {
-    width: 65px; height: 65px; border-radius: 50%; padding: 3px;
-    border: 1px solid #555; overflow: hidden; transition: all 0.4s ease; margin-bottom: 8px;
-}
-.avatar-img img {
-    width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
-    filter: grayscale(100%); transition: all 0.4s ease;
-}
-.avatar-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #aaa; font-weight: 600; transition: color 0.3s; }
-.avatar-btn.active { opacity: 1; transform: scale(1.1); }
-.avatar-btn.active .avatar-img { border: 2px solid var(--gold); box-shadow: 0 0 15px rgba(212, 175, 55, 0.6); background: transparent; }
-.avatar-btn.active .avatar-img img { filter: grayscale(0%); }
-.avatar-btn.active .avatar-label { color: var(--gold); }
 
-.glass-card-mempelai {
-    background: var(--glass-dark); backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border); border-radius: 25px;
-    padding: 40px 20px; max-width: 450px; margin: 0 auto;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+.twin-container {
+  display: flex;
+  flex-direction: column; /* Mobile: Stack Atas-Bawah */
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: center;
 }
-.mempelai-content { display: none; flex-direction: column; align-items: center; animation: fadeIn 0.5s ease; }
-.mempelai-content.active { display: flex; }
-@keyframes fadeIn { from { opacity:0; transform:translateY(10px);} to { opacity:1; transform:translateY(0);} }
 
-.photo-frame-gold {
-    width: 180px; height: 240px; border-radius: 90px 90px 10px 10px;
-    border: 3px solid var(--gold); padding: 5px; margin-bottom: 20px;
+/* Desktop: Side-by-side */
+@media (min-width: 768px) {
+  .twin-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start; /* Rata atas */
+    gap: 30px;
+  }
 }
-.photo-frame-gold img { width: 100%; height: 100%; object-fit: cover; border-radius: 85px 85px 5px 5px; }
-.badge-role { letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-size: 0.7rem; margin-bottom: 5px; display: block; }
-.name-display { font-family: var(--font-script); font-size: 2.5rem; color: #fff; margin-bottom: 10px; }
-.parents-label { font-size: 0.8rem; color: #aaa; text-transform: uppercase; margin-bottom: 5px; }
-.parents-name { font-size: 1rem; color: #ddd; margin-bottom: 10px; line-height: 1.5; }
-.mempelai-address { font-size: 0.9rem; color: #bbb; margin-bottom: 20px; line-height: 1.4; font-style: italic; }
-.mempelai-address i { color: var(--gold); margin-right: 5px; }
-.btn-ig {
-    text-decoration: none; background: transparent; color: var(--gold);
-    border: 1px solid var(--gold); padding: 8px 25px; border-radius: 50px;
-    font-size: 0.8rem; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;
+
+/* Styling Kartu Kaca */
+.glass-card-twin {
+  flex: 1;
+  background: var(--glass-dark);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 30px 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s;
 }
-.btn-ig:hover { background: var(--gold); color: #000; }
+.glass-card-twin:hover {
+  border-color: var(--gold);
+  transform: translateY(-5px);
+}
+
+/* Frame Foto Formal (Arch Style) */
+.formal-frame {
+  width: 180px;
+  height: 250px;
+  margin: 0 auto 25px;
+  position: relative;
+  border-radius: 100px 100px 10px 10px; /* Bentuk Kubah */
+  overflow: hidden;
+  border-bottom: 4px solid var(--gold);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.formal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Frame Border Overlay (Garis Emas Tipis) */
+.frame-border {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: none;
+  border-radius: 95px 95px 0 0;
+  pointer-events: none;
+  z-index: 2;
+}
+/* =========================================
+   UPDATE: GOLD BORDERS (Konsistensi Desain)
+   Menambahkan garis emas di Verse, Mempelai, & Footer
+   agar sama seperti Wedding Event
+   ========================================= */
+
+/* 1. Bagian Verse (Ayat) */
+.glass-box-verse {
+  border: 1px solid var(--gold) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Bayangan sedikit dipertegas */
+}
+
+/* 2. Bagian Bride & Groom (Twin Cards) */
+.glass-card-twin {
+  border: 1px solid var(--gold) !important;
+  /* Opsional: Efek glow emas saat hover */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.glass-card-twin:hover {
+  box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2) !important;
+}
+
+/* 3. Bagian Footer */
+.glass-footer-content {
+  border: 1px solid var(--gold) !important;
+}
+/* Update Garis Emas Map & RSVP agar senada */
+.glass-map-card,
+.glass-form-card,
+.glass-comments-card {
+  border: 1px solid var(--gold) !important;
+}
+/* Typography */
+.name-display-twin {
+  font-family: var(--font-script);
+  font-size: 2.5rem;
+  color: #fff;
+  margin: 10px 0;
+  line-height: 1.2;
+}
+
+.parents-info {
+  font-size: 0.95rem;
+  color: #ccc;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.divider-small {
+  width: 50px;
+  height: 1px;
+  background: var(--gold);
+  margin: 15px auto;
+  opacity: 0.4;
+}
+
+.address-info {
+  font-size: 0.85rem;
+  color: #aaa;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.btn-ig-twin {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 8px 25px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  transition: 0.3s;
+}
+.btn-ig-twin:hover {
+  background: var(--gold);
+  color: #000;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
 
 /* =========================================
    8. EVENTS SECTION
    ========================================= */
-.section-events { padding: 40px 20px 80px; text-align: center; }
-.event-grid { display: flex; flex-direction: column; gap: 30px; max-width: 900px; margin: 0 auto; justify-content: center; }
-@media (min-width: 768px) { .event-grid { flex-direction: row; } }
+.section-events {
+  padding: 40px 20px 80px;
+  text-align: center;
+  perspective: 1000px;
+}
+.event-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  .event-grid {
+    flex-direction: row;
+  }
+}
+
 .event-card {
-    flex: 1; background: var(--glass-dark); backdrop-filter: blur(10px);
-    border: 1px solid var(--gold); border-radius: 20px; padding: 40px 25px;
-    text-align: center; position: relative; overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: transform 0.3s;
+  flex: 1;
+  background: var(--glass-dark);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--gold);
+  border-radius: 20px;
+  padding: 40px 25px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
 }
-.event-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2); }
-.card-ornament-top { font-size: 2rem; color: var(--gold); opacity: 0.3; margin-bottom: 10px; }
+.event-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+}
+
+.card-ornament-top {
+  font-size: 2rem;
+  color: var(--gold);
+  opacity: 0.3;
+  margin-bottom: 10px;
+}
 .event-title {
-    font-family: var(--font-main); font-size: 1.8rem; color: var(--gold);
-    margin-bottom: 25px; letter-spacing: 4px; text-transform: uppercase;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.3); padding-bottom: 15px; display: inline-block;
+  font-family: var(--font-main);
+  font-size: 1.8rem;
+  color: var(--gold);
+  margin-bottom: 25px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  padding-bottom: 15px;
+  display: inline-block;
 }
-.event-date, .event-time { display: flex; align-items: center; justify-content: center; gap: 10px; color: #fff; font-size: 1rem; margin-bottom: 10px; }
-.event-date i, .event-time i { color: var(--gold); font-size: 1.2rem; }
-.event-divider { width: 50px; height: 2px; background: var(--gold); margin: 20px auto; opacity: 0.5; }
-.event-location i { font-size: 1.5rem; color: var(--gold); display: block; margin-bottom: 10px; }
-.event-location strong { display: block; font-size: 1.1rem; color: #fff; margin-bottom: 5px; }
-.event-location p { font-size: 0.9rem; color: #aaa; }
+.event-meta {
+  margin-bottom: 15px;
+}
+.event-date,
+.event-time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+.event-date i,
+.event-time i {
+  color: var(--gold);
+  font-size: 1.2rem;
+}
+.event-divider {
+  width: 50px;
+  height: 2px;
+  background: var(--gold);
+  margin: 20px auto;
+  opacity: 0.5;
+}
+.event-location i {
+  font-size: 1.5rem;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 10px;
+}
+.event-location strong {
+  display: block;
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 5px;
+}
+.event-location p {
+  font-size: 0.9rem;
+  color: #aaa;
+}
 
 /* =========================================
    9. LOCATION SECTION
    ========================================= */
-.section-location { padding: 40px 20px 100px; text-align: center; }
+/* CARI BAGIAN INI DI STYLE.CSS */
+.section-location {
+  padding: 40px 20px 100px;
+  text-align: center;
+  /* TAMBAHKAN BARIS INI: */
+  perspective: 1000px;
+}
+
 .glass-map-card {
-    background: var(--glass-dark); backdrop-filter: blur(10px);
-    border: 1px solid var(--gold); border-radius: 25px; padding: 20px;
-    max-width: 800px; margin: 0 auto; box-shadow: 0 15px 50px rgba(0,0,0,0.5); position: relative;
+  background: var(--glass-dark);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--gold);
+  border-radius: 25px;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+  position: relative;
 }
+/* CARI BAGIAN INI DI STYLE.CSS DAN UBAH */
 .floating-pin {
-    position: absolute; top: -25px; left: 50%; transform: translateX(-50%);
-    width: 50px; height: 50px; background: var(--gold); color: #000;
-    border-radius: 50%; display: flex; justify-content: center; align-items: center;
-    font-size: 1.5rem; box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
-    z-index: 10; animation: bounce 2s infinite;
+  position: absolute;
+  top: -25px;
+  /* --- UBAH BAGIAN INI --- */
+  /* Hapus atau komentari cara lama: */
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+
+  /* Gunakan cara baru ini agar lebih presisi di tengah: */
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  /* ----------------------- */
+  width: 50px;
+  height: 50px;
+  background: var(--gold);
+  color: #000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+  z-index: 10;
+  animation: bounce 2s infinite ease-in-out;
 }
-@keyframes bounce { 0%, 100% {transform: translateX(-50%) translateY(0);} 50% {transform: translateX(-50%) translateY(-10px);} }
-.map-frame { border-radius: 15px; overflow: hidden; border: 2px solid rgba(255, 255, 255, 0.1); margin-top: 15px; margin-bottom: 25px; }
-.google-map { filter: grayscale(20%) contrast(1.1); }
-.map-actions { display: flex; flex-direction: column; gap: 15px; justify-content: center; margin-bottom: 15px; }
-@media (min-width: 768px) { .map-actions { flex-direction: row; } }
+
+.map-frame {
+  border-radius: 15px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+.google-map {
+  filter: grayscale(20%) contrast(1.1);
+}
+
+.map-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+@media (min-width: 768px) {
+  .map-actions {
+    flex-direction: row;
+  }
+}
+
 .btn-action-gold {
-    padding: 12px 30px; border-radius: 50px; font-size: 0.95rem; font-weight: 600;
-    cursor: pointer; text-decoration: none; display: inline-flex; align-items: center;
-    justify-content: center; gap: 10px; transition: all 0.3s; letter-spacing: 1px; text-transform: uppercase;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
-.btn-action-gold.primary { background: linear-gradient(45deg, #b07d35, #d4af37); color: #fff; border: none; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3); }
-.btn-action-gold.secondary { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+.btn-action-gold.primary {
+  background: linear-gradient(45deg, #b07d35, #d4af37);
+  color: #fff;
+  border: none;
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+.btn-action-gold.secondary {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+}
 
 /* =========================================
    10. WEDDING GIFT
    ========================================= */
-.section-gift { padding: 20px 20px 100px; text-align: center; }
-.gift-container { display: flex; flex-direction: column; align-items: center; gap: 30px; max-width: 800px; margin: 0 auto; }
-@media (min-width: 768px) { .gift-container { flex-direction: row; justify-content: center; align-items: stretch; } }
+.section-gift {
+  padding: 20px 20px 100px;
+  text-align: center;
+}
+/* CARI BAGIAN INI DI STYLE.CSS DAN UBAH */
+.gift-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  max-width: 800px;
+  /* --- UBAH BARIS INI --- */
+  /* margin: 0 auto;  <- Hapus ini */
+  margin: 50px auto 0; /* <- Tambahkan jarak 50px di atas */
+  /* --------------------- */
+}
+
+@media (min-width: 768px) {
+  .gift-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+  }
+}
+
 .atm-card {
-    width: 100%; max-width: 360px; height: 220px; border-radius: 20px;
-    padding: 25px; position: relative; display: flex; flex-direction: column;
-    justify-content: space-between; box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; transition: transform 0.3s;
+  width: 100%;
+  max-width: 360px;
+  height: 220px;
+  border-radius: 20px;
+  padding: 25px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
 }
-.atm-card:hover { transform: translateY(-10px) scale(1.02); }
-.card-bri { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border: 1px solid var(--gold); }
-.card-dana { background: linear-gradient(135deg, #0047ab 0%, #002f70 100%); border: 1px solid rgba(255, 255, 255, 0.2); }
-.card-shine { position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%); pointer-events: none; }
-.card-top { display: flex; justify-content: space-between; align-items: center; }
-.chip-img { width: 50px; height: 35px; background: linear-gradient(135deg, #d4af37, #f3e5ab); border-radius: 5px; position: relative; border: 1px solid #997b1e; }
-.chip-line { position: absolute; background: rgba(0,0,0,0.3); height: 1px; width: 100%; }
-.chip-line:nth-child(1) { top: 33%; } .chip-line:nth-child(2) { top: 66%; } .chip-line:nth-child(3) { width: 1px; height: 100%; left: 33%; top: 0; } .chip-line:nth-child(4) { width: 1px; height: 100%; left: 66%; top: 0; }
-.card-contactless { font-size: 1.5rem; color: rgba(255,255,255,0.5); transform: rotate(90deg); margin-right: auto; margin-left: 15px; }
-.bank-logo { height: 30px; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
-.card-number-group { margin-top: 20px; width: 100%; display: block; text-align: left; }
-.card-number { font-family: 'Courier New', Courier, monospace; font-size: 1.4rem; font-weight: bold; color: #fff; letter-spacing: 3px; display: block; }
-.card-bottom { display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; padding-top: 10px; }
-.holder-label { font-size: 0.5rem; color: #aaa; display: block; margin-bottom: 2px; }
-.holder-name { font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; color: #fff; text-transform: uppercase; }
+.atm-card:hover {
+  transform: translateY(-10px);
+}
+
+.card-bri {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 1px solid var(--gold);
+}
+.card-dana {
+  background: linear-gradient(135deg, #0047ab 0%, #002f70 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card-shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.atm-card:hover .card-shine {
+  opacity: 1;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chip-img {
+  width: 50px;
+  height: 35px;
+  background: linear-gradient(135deg, #d4af37, #f3e5ab);
+  border-radius: 5px;
+  position: relative;
+  border: 1px solid #997b1e;
+}
+.chip-line {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+  height: 1px;
+  width: 100%;
+}
+.chip-line:nth-child(1) {
+  top: 33%;
+}
+.chip-line:nth-child(2) {
+  top: 66%;
+}
+.chip-line:nth-child(3) {
+  width: 1px;
+  height: 100%;
+  left: 33%;
+  top: 0;
+}
+.chip-line:nth-child(4) {
+  width: 1px;
+  height: 100%;
+  left: 66%;
+  top: 0;
+}
+.card-contactless {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.5);
+  transform: rotate(90deg);
+  margin-right: auto;
+  margin-left: 15px;
+}
+.bank-logo {
+  height: 30px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.card-number-group {
+  margin-top: 20px;
+  width: 100%;
+  display: block;
+  text-align: left;
+}
+.card-number {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 3px;
+  display: block;
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+  padding-top: 10px;
+}
+.holder-label {
+  font-size: 0.5rem;
+  color: #aaa;
+  display: block;
+  margin-bottom: 2px;
+}
+.holder-name {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.9rem;
+  color: #fff;
+  text-transform: uppercase;
+}
+
 .btn-copy-text {
-    background: rgba(0, 0, 0, 0.2); border: 1px solid var(--gold); color: var(--gold);
-    padding: 8px 15px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
-    cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; transition: all 0.3s;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+  transition: all 0.3s;
 }
-.btn-copy-text:hover { background: var(--gold); color: #000; box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+.btn-copy-text:hover {
+  background: var(--gold);
+  color: #000;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
 
 /* =========================================
    11. RSVP SECTION
    ========================================= */
-.section-rsvp { padding: 40px 20px 80px; }
-.rsvp-container { display: flex; flex-direction: column; gap: 30px; max-width: 900px; margin: 0 auto; }
-@media (min-width: 768px) { .rsvp-container { flex-direction: row; align-items: flex-start; } }
-.glass-form-card, .glass-comments-card {
-    flex: 1; background: var(--glass-dark); backdrop-filter: blur(10px);
-    border: 1px solid var(--gold); border-radius: 20px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+/* CARI BAGIAN INI DI STYLE.CSS: */
+.section-rsvp {
+  padding: 40px 20px 80px;
 }
-.form-group { margin-bottom: 15px; text-align: left; }
-.form-group label { display: block; color: var(--gold); margin-bottom: 5px; font-size: 0.9rem; }
-.form-group input, .form-group select, .form-group textarea {
-    width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid #444; color: #fff; padding: 10px; border-radius: 10px; font-family: inherit;
+.rsvp-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  /* TAMBAHKAN BARIS INI: */
+  perspective: 2000px; /* Memberikan kedalaman 3D yang dramatis */
 }
-.form-group input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,0.1); }
+/* ... sisanya biarkan sama ... */
+
+@media (min-width: 768px) {
+  .rsvp-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.glass-form-card,
+.glass-comments-card {
+  flex: 1;
+  background: var(--glass-dark);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--gold);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+.form-group label {
+  display: block;
+  color: var(--gold);
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #444;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  font-family: inherit;
+}
+.form-group input:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .btn-kirim {
-    width: 100%; padding: 12px; background: var(--gold); color: #000; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px;
+  width: 100%;
+  padding: 12px;
+  background: var(--gold);
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  transition: transform 0.3s ease;
 }
-.btn-kirim:hover { background: #fff; }
-.comment-title { color: #fff; border-bottom: 1px solid #444; padding-bottom: 10px; margin-bottom: 15px; font-family: var(--font-main); }
-.comments-scroll { max-height: 400px; overflow-y: auto; padding-right: 5px; }
-.comment-item { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 15px; margin-bottom: 10px; border-left: 3px solid var(--gold); }
-.comment-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
-.c-name { font-weight: bold; color: var(--gold); font-size: 0.95rem; }
-.c-status { font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; background: #333; color: #ccc; }
-.c-status.Hadir { background: rgba(76, 175, 80, 0.2); color: #4caf50; }
-.c-status.Tidak { background: rgba(244, 67, 54, 0.2); color: #f44336; }
-.c-message { font-size: 0.9rem; color: #ddd; line-height: 1.4; margin-bottom: 5px; }
-.c-time { font-size: 0.7rem; color: #777; text-align: right; display: block; }
+.btn-kirim:hover {
+  background: #fff;
+}
+
+.comment-title {
+  color: #fff;
+  border-bottom: 1px solid #444;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  font-family: var(--font-main);
+}
+.comments-scroll {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+.comment-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-left: 3px solid var(--gold);
+}
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.c-name {
+  font-weight: bold;
+  color: var(--gold);
+  font-size: 0.95rem;
+}
+.c-status {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #333;
+  color: #ccc;
+}
+.c-status.Hadir {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+}
+.c-status.Tidak {
+  background: rgba(244, 67, 54, 0.2);
+  color: #f44336;
+}
+.c-message {
+  font-size: 0.9rem;
+  color: #ddd;
+  line-height: 1.4;
+  margin-bottom: 5px;
+}
+.c-time {
+  font-size: 0.7rem;
+  color: #777;
+  text-align: right;
+  display: block;
+}
 
 /* =========================================
    12. FOOTER & EXTRAS
    ========================================= */
-.footer-section { padding: 60px 20px 80px; text-align: center; position: relative; z-index: 1; }
-.glass-footer-content {
-    background: var(--glass-dark); backdrop-filter: blur(5px);
-    border: 1px solid var(--glass-border); border-radius: 30px;
-    padding: 40px 20px; max-width: 600px; margin: 0 auto 30px;
+.footer-section {
+  padding: 60px 20px 80px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
 }
-.closing-text { font-size: 1rem; line-height: 1.6; color: #ddd; margin-bottom: 30px; font-style: italic; }
-.closing-signature { margin-top: 20px; }
-.small-text { font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 10px; }
-.couple-signature { font-family: var(--font-script); font-size: 3rem; color: #fff; }
-.copyright { font-size: 0.7rem; color: #666; }
+.glass-footer-content {
+  background: var(--glass-dark);
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--glass-border);
+  border-radius: 30px;
+  padding: 40px 20px;
+  max-width: 600px;
+  margin: 0 auto 30px;
+}
+.closing-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ddd;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+.closing-signature {
+  margin-top: 20px;
+}
+.small-text {
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 10px;
+}
+.couple-signature {
+  font-family: var(--font-script);
+  font-size: 3rem;
+  color: #fff;
+}
+.copyright {
+  font-size: 0.7rem;
+  color: #666;
+}
 
-.bottom-navbar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0, 0, 0, 0.9); border-top: 1px solid #333; display: none; justify-content: space-around; padding: 10px 0; z-index: 998; }
-.nav-item { color: #666; text-decoration: none; display: flex; flex-direction: column; align-items: center; font-size: 0.6rem; }
-.nav-item i { font-size: 1.2rem; margin-bottom: 3px; }
-.nav-item.active { color: var(--gold); }
+.bottom-navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  border-top: 1px solid #333;
+  display: none;
+  justify-content: space-around;
+  padding: 10px 0;
+  z-index: 998;
+}
+.nav-item {
+  color: #666;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.6rem;
+}
+.nav-item i {
+  font-size: 1.2rem;
+  margin-bottom: 3px;
+}
+.nav-item.active {
+  color: var(--gold);
+}
 
-#music-control { position: fixed; bottom: 70px; right: 20px; width: 45px; height: 45px; background: rgba(0,0,0,0.8); border: 1px solid var(--gold); color: var(--gold); border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 999; opacity: 0; }
-.spin { animation: spin 4s linear infinite; } @keyframes spin { 100% { transform: rotate(360deg); } }
+#music-control {
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 0;
+}
+.spin {
+  animation: spin 4s linear infinite;
+}
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
-.toast-notification { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(100px); background: rgba(0, 0, 0, 0.9); color: var(--gold); border: 1px solid var(--gold); padding: 12px 25px; border-radius: 30px; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; opacity: 0; visibility: hidden; transition: all 0.5s; z-index: 10000; white-space: nowrap; }
-.toast-notification.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.toast-notification {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(0, 0, 0, 0.9);
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s;
+  z-index: 10000;
+  white-space: nowrap;
+}
+.toast-notification.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
 
-/* --- KANVAS LEDAKAN (WAJIB PALING ATAS) --- */
 #explosion-canvas {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 20000; pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20000;
+  pointer-events: none;
+}
+
+/* GSAP Optimization */
+.glass-box-verse,
+.glass-card-mempelai,
+.glass-map-card,
+.glass-form-card,
+.glass-comments-card,
+.glass-footer-content,
+.atm-card,
+.event-card {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+.photo-frame-gold,
+.tilt-box,
+.floating-pin {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .floating-pin {
+    animation: none;
+  }
+}
+/* =========================================
+   DESKTOP ONLY: ZOOM OUT BACKGROUND
+   Hanya berlaku di layar Laptop/PC (> 1024px)
+   ========================================= */
+@media screen and (min-width: 1024px) {
+  /* 1. Atur Background COVER (cover.jpg) */
+  #cover {
+    /* Mengganti 'cover' menjadi 'contain' agar gambar terlihat utuh (zoom out) */
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-color: #000 !important; /* Warna hitam untuk mengisi ruang kosong */
+  }
+
+  /* 2. Atur Background SLIDER (bg-1.jpg & bg-2.jpg) */
+  .bg-slide {
+    /* Zoom out agar gambar background tidak terlalu dekat di monitor lebar */
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+  }
+
+  /* Memastikan overlay gelap tetap menutupi seluruh layar */
+  .bg-dark-overlay {
+    background: rgba(
+      0,
+      0,
+      0,
+      0.85
+    ) !important; /* Sedikit lebih gelap agar ruang kosong menyatu */
+  }
 }
